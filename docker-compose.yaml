@@ -1,14 +1,15 @@
 version: "3.8"
 
 services:
-  fe:
+  frontend:
     build: ./
     container_name: novohrad
     ports:
       - "90:90"
     restart: always
+    networks:
+      - bajerlukascz_network
 
-  cloudflare:
-    image: cloudflare/cloudflared:latest
-    container_name: novohrad-cloudflared
-    command: tunnel --no-autoupdate run --token eyJhIjoiM2NjZGM4YmUwMzMzOGJlNWJjYjM1ZWIxYzc2OGExYzQiLCJ0IjoiOGM4YTcxMGItOWViNy00YzI3LWE0NDItYjhmZWQ5NDUwY2MwIiwicyI6IllUQXpPV05qT0RjdE5EQmpaUzAwWXpkbExXRXlNVEF0WVdObVlUUmpNVE5oWW1JdyJ9
+networks:
+  bajerlukascz_network:
+    external: true
